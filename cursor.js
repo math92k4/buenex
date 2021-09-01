@@ -10,6 +10,30 @@ export function initCursor() {
   csrLayer.appendChild(innerCsr)
 
   window.addEventListener('mousemove', mouseMoved)
+
+  let mousePosX = 0,
+    mousePosY = 0,
+    mouseCircle = document.querySelector('.outer_csr')
+
+  document.onmousemove = (e) => {
+    mousePosX = e.pageX
+    mousePosY = e.pageY
+  }
+
+  let delay = 10,
+    revisedMousePosX = 0,
+    revisedMousePosY = 0
+
+  function delayMouseFollow() {
+    requestAnimationFrame(delayMouseFollow)
+
+    revisedMousePosX += (mousePosX - revisedMousePosX) / delay
+    revisedMousePosY += (mousePosY - revisedMousePosY) / delay
+
+    mouseCircle.style.top = revisedMousePosY + 'px'
+    mouseCircle.style.left = revisedMousePosX + 'px'
+  }
+  delayMouseFollow()
 }
 
 function mouseMoved(event) {
@@ -20,9 +44,9 @@ function mouseMoved(event) {
 
 function moveCircle(x, y) {
   const innerCsr = document.querySelector('.inner_csr')
-  const outerCsr = document.querySelector('.outer_csr')
+  // const outerCsr = document.querySelector('.outer_csr')
   innerCsr.style.top = y + 'px'
   innerCsr.style.left = x + 'px'
-  outerCsr.style.top = y + 'px'
-  outerCsr.style.left = x + 'px'
+  // outerCsr.style.top = y + 'px'
+  // outerCsr.style.left = x + 'px'
 }
