@@ -109,7 +109,7 @@ h3 {
 #globe_sprite {
   width: inherit;
   height: inherit;
-  background-image: url(/imgs/ucf-pluto.png);
+  background-image: url('/imgs/ucf-pluto.png');
   background-size: cover;
   animation-name: kf_globe;
   animation-duration: 2s;
