@@ -1,0 +1,238 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  cursor: none;
+}
+
+body {
+  background-color: #203243;
+}
+
+#cursor_layer {
+  z-index: 10;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.inner_csr {
+  position: absolute;
+  transform: translateX(-50%) translateY(-50%);
+  width: 7px;
+  height: 7px;
+  border-radius: 100%;
+  background-color: white;
+}
+
+.outer_csr {
+  position: absolute;
+  transform: translateX(-50%) translateY(-50%);
+  width: 40px;
+  height: 40px;
+  border-radius: 100%;
+  border: 2px solid #b9839e;
+  transition: 0.1s;
+}
+
+#splash {
+  min-height: 100vh;
+}
+
+h1 {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 6rem;
+  color: white;
+  font-weight: 700;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+}
+
+h2 {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1.5rem;
+  color: white;
+  font-weight: 500;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateY(-5rem) translateX(-150%);
+}
+
+h3 {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1.5rem;
+  color: white;
+  font-weight: 500;
+  position: absolute;
+  bottom: 50%;
+  left: 50%;
+  transform: translateY(5rem) translateX(150%);
+}
+
+#h1_overlay {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 6rem;
+  font-weight: 700;
+  -webkit-text-stroke: 1px white;
+  -webkit-text-fill-color: transparent;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+}
+
+.center_box {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#globe {
+  width: 300px;
+  height: 300px;
+  position: absolute;
+  top: 50% - 150px;
+  left: 50% - 150px;
+  transition: 0.1s;
+  transform: translateY(var(--new-y)) translateX(var(--new-x));
+}
+
+#globe_sprite {
+  width: inherit;
+  height: inherit;
+  background-image: url(/imgs/ucf-pluto.png);
+  background-size: cover;
+  animation-name: kf_globe;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-timing-function: ease-in-out;
+}
+@keyframes kf_globe {
+  0% {
+    transform: translateY(-2%);
+  }
+  100% {
+    transform: translateY(-4%);
+  }
+}
+
+#background {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  z-index: -2;
+}
+
+#background::after {
+  content: '';
+  position: absolute;
+  width: 200vw;
+  height: 200vh;
+  left: -50%;
+  top: -50%;
+  background-image: url('imgs/grains.png');
+  opacity: 0.8;
+
+  animation: kf_grain 0.3s steps(5) infinite;
+}
+
+@keyframes kf_grain {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+
+  20% {
+    transform: translate(-5%, -10%);
+  }
+  40% {
+    transform: translate(5%, -15%);
+  }
+
+  60% {
+    transform: translate(-12%, 9%);
+  }
+
+  80% {
+    transform: translate(7%, -2%);
+  }
+}
+
+.circle1,
+.circle12,
+.circle13,
+.circle2,
+.circle22,
+.circle23 {
+  position: absolute;
+  z-index: 1;
+  top: 10%;
+  left: 10%;
+  transform: translateX(-50%) translateY(calc(-50%));
+  opacity: 0.5;
+
+  width: 20px;
+  height: 20px;
+  border: 1px solid white;
+  border-radius: 100%;
+
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-duration: 4s;
+}
+
+.circle1,
+.circle12,
+.circle13 {
+  animation-name: kf_circle1;
+}
+
+.circle12,
+.circle22 {
+  animation-delay: 200ms;
+  opacity: 0.3;
+}
+
+.circle13,
+.circle23 {
+  animation-delay: 500ms;
+  opacity: 0.1;
+}
+
+@keyframes kf_circle1 {
+  0% {
+    transform: translateX(-50%) translateY(-50%) rotateZ(0deg);
+  }
+  100% {
+    transform: translateX(-50%) translateY(-50%) rotateZ(180deg) rotateX(360deg);
+  }
+}
+
+.circle2,
+.circle22,
+.circle23 {
+  animation-name: kf_circle2;
+}
+
+@keyframes kf_circle2 {
+  0% {
+    transform: translateX(-50%) translateY(-50%) rotateZ(0deg);
+  }
+  100% {
+    transform: translateX(-50%) translateY(-50%) rotateZ(-180deg)
+      rotateX(360deg);
+  }
+}
